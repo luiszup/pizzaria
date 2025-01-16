@@ -63,8 +63,16 @@ public class Pagamento {
             throw new IllegalArgumentException("Os valores não podem ser nulos");
         }
         if (valorPago < valorTotalPedido) {
-            throw new IllegalArgumentException("O valor pago não pode ser menos que o valor cobrado do pedido");
+            throw new IllegalArgumentException("O valor pago não pode ser menos que o valor cobrado do pedido.");
         }
         return true;
+    }
+
+    public void realizarPagamento(Double valorTotalPedido) {
+        if (!validarPagamento(valorTotalPedido)) {
+            throw new IllegalArgumentException("O valor pago não pode ser menor que o valor cobrado do pedido.");
+        }
+        this.dataHoraPagamento = LocalDateTime.now();
+        System.out.println("Pagamento realizado com sucesso!");
     }
 }

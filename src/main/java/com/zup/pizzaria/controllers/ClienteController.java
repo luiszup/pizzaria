@@ -17,7 +17,11 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<Cliente> criarCliente(@RequestBody ClienteDTO clienteDTO) {
-        Cliente novoCliente = clienteService.salvarCliente(clienteDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoCliente);
+        try {
+            Cliente novoCliente = clienteService.salvarCliente(clienteDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(novoCliente);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

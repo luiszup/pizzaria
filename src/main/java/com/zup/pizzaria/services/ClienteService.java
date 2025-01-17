@@ -16,7 +16,8 @@ public class ClienteService {
     }
 
     public Cliente salvarCliente(ClienteDTO clienteDTO) {
-        Cliente cliente = ClienteMapper.converterDTOParaModelo(clienteDTO);
-        return clienteRepository.save(cliente);
+            clienteDTO.validar();
+            Cliente cliente = ClienteMapper.converterDTOParaModelo(clienteDTO);
+            return clienteRepository.save(cliente);
     }
 }

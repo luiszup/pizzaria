@@ -52,16 +52,4 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    public void validar() {
-        if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("O nome não pode estar vazio.");
-        }
-        if (email == null || email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-            throw new IllegalArgumentException("E-mail inválido! Digite um e-mail válido.");
-        }
-        if (telefone == null || telefone.matches("\\d{8,}")) {
-            throw new IllegalArgumentException("Telefone inválido! Digite apenas números e que tenha no mínimo 8 dígitos.");
-        }
-    }
 }

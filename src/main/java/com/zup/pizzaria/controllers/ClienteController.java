@@ -1,5 +1,6 @@
 package com.zup.pizzaria.controllers;
 
+import com.zup.pizzaria.dtos.ClienteDTO;
 import com.zup.pizzaria.models.Cliente;
 import com.zup.pizzaria.services.ClienteService;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,8 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @PostMapping
-    public ResponseEntity<Cliente> criarCliente(@RequestBody Cliente cliente) {
-        Cliente novoCliente = clienteService.salvarCliente(cliente);
-        return ResponseEntity.ok(novoCliente);
+    public ResponseEntity<Cliente> criarCliente(@RequestBody ClienteDTO clienteDTO) {
+        Cliente novoCliente = clienteService.salvarCliente(clienteDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoCliente);
     }
 }

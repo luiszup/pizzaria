@@ -1,10 +1,19 @@
 package com.zup.pizzaria.dtos;
 
-import com.zup.pizzaria.models.Cliente;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public class ClienteDTO {
+    @NotBlank(message = "O nome não pode estar vazio.")
     private String nome;
+
+    @NotBlank(message = "O e-mail não pode estar vazio.")
+    @Email(message = "E-mail inválido! Digite um e-mail válido.")
     private String email;
+
+    @NotBlank(message = "O telefone não pode estar vazio.")
+    @Pattern(regexp = "\\d{8,}", message = "Telefone inválido! Digite apenas números e que tenha no mínimo 8 dígitos.")
     private String telefone;
 
     public ClienteDTO(String nome, String email, String telefone) {
@@ -35,17 +44,5 @@ public class ClienteDTO {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public void validar() {
-        if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("O nome não pode estar vazio.");
-        }
-        if (email == null || email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-            throw new IllegalArgumentException("E-mail inválido! Digite um e-mail válido.");
-        }
-        if (telefone == null || telefone.matches("\\d{8,}")) {
-            throw new IllegalArgumentException("Telefone inválido! Digite apenas números e que tenha no mínimo 8 dígitos.");
-        }
     }
 }

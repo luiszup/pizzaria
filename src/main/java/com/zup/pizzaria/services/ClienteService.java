@@ -4,6 +4,7 @@ import com.zup.pizzaria.dtos.ClienteDTO;
 import com.zup.pizzaria.mappers.ClienteMapper;
 import com.zup.pizzaria.models.Cliente;
 import com.zup.pizzaria.repository.ClienteRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class ClienteService {
         this.clienteRepository = clienteRepository;
     }
 
-    public Cliente salvarCliente(ClienteDTO clienteDTO) {
+    public Cliente salvarCliente(@Valid ClienteDTO clienteDTO) {
             Cliente cliente = ClienteMapper.converterDTOParaModelo(clienteDTO);
             return clienteRepository.save(cliente);
     }
